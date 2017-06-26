@@ -1,0 +1,132 @@
+MYSQL:
+
+/*==============================================================*/
+/* Table: User                                                  */
+/*==============================================================*/
+create table User
+(
+   userId               int not null auto_increment,
+   role                 int not null,
+   userName             varchar(255) not null,
+   password             varchar(255) not null,
+   email            	varchar(255) not null,
+
+   primary key (userId),
+   key AK_Identifier_2 (username)
+);
+
+
+
+MONGODB:
+
+/*==============================================================*/
+/* Collection: Questionnaires                                   */
+/* Usage: for display											*/
+/*==============================================================*/
+Questionnaires : <Document>
+{
+	objectId : objint
+	paperTitle : string
+	authorId : int
+	createDate : Date
+	// ?? link : string 
+	status : int
+	questions : 
+	{
+		q1 :
+		{
+			questionTitle : string
+			type : int
+			choices : 
+			{
+				c1 : string
+				c2 : string
+				...
+			}
+			showAfter : 
+			{
+				s1 : 
+				{
+					qNum : int
+					cNum : int
+				}
+				s2 : 
+				{
+					qNum : int
+					cNum : int
+				}
+				...
+			}
+		}
+		q2 :
+		{
+			questionTitle : string
+			type : int
+			choices : 
+			{
+				c1 : string
+				c2 : string
+				...
+			}
+			showAfter : 
+			{
+				s1 : 
+				{
+					qNum : int
+					cNum : int
+				}
+				s2 : 
+				{
+					qNum : int
+					cNum : int
+				}
+				...
+			}
+		}
+		...
+	}
+}
+
+/*==============================================================*/
+/* Collection: QuestionnaireResults                             */
+/* Usage: for statistics										*/
+/*==============================================================*/
+QuestionnaireResults : <Document>
+{
+	objectId : objint
+	questionnaireId : objint
+	answerTime : Timestamp
+	ipAddress : int
+	timing : long
+	sourcing : string
+	questionAnswers : 
+	{
+		q1 :
+		{
+			questionTitle : string
+			type : int
+			choices : 
+			{
+				c1 : string
+				c2 : string
+				...
+			}
+			choiceAnswer : int
+			input : string
+		}
+		q2 :
+		{
+			questionTitle : string
+			type : int
+			choices : 
+			{
+				c1 : string
+				c2 : string
+				...
+			}
+			choiceAnswer : int
+			input : string
+		}
+		...
+	}
+}
